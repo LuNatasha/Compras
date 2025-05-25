@@ -7,11 +7,13 @@ import java.util.List;
 
 public class Cliente{
 
-    @id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nome;
     private String email;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Pedido> pedidos;
 
     public Long getId() {
         return id;
@@ -32,5 +34,12 @@ public class Cliente{
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }
